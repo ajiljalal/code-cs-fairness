@@ -6,7 +6,10 @@ import glob
 import numpy as np
 import utils
 import matplotlib.pyplot as plt
-# import seaborn as sns
+import matplotlib
+matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams['ps.fonttype'] = 42
+
 
 
 def int_or_float(val):
