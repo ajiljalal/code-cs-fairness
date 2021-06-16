@@ -12,7 +12,7 @@ from functools import partial
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from celebA_stylegan2.model import Generator
+from stylegan2.model import Generator
 
 class PULSE(torch.nn.Module):
     def __init__(self, image_size, checkpoint_path, dataset, verbose=True):
@@ -37,7 +37,7 @@ class PULSE(torch.nn.Module):
                 latent_out = torch.nn.LeakyReLU(5)(self.model.style(latent))
                 self.gaussian_fit = {"mean": latent_out.mean(0), "std": latent_out.std(0)}
                 torch.save(self.gaussian_fit,f"{dataset}_gaussian_fit.pt")
-                if self.verbose: print("\tSaved \"gaussian_fit.pt\"")
+                if self.verbose: print(f"\tSaved {dataset}_gaussian_fit.pt")
 
         #cache_dir = Path(cache_dir)
         #cache_dir.mkdir(parents=True, exist_ok = True)
