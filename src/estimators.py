@@ -217,7 +217,7 @@ def glow_annealed_map_estimator(hparams):
 
     annealed = hparams.annealed
     # set up model and session
-    dec_x, dec_eps, hparams.feed_dict, run = glow_model.get_model(hparams.checkpoint_path, hparams.batch_size, hparams.zprior_sdev, hparams.fixed_init)
+    dec_x, dec_eps, hparams.feed_dict, run = glow_model.get_model(hparams.checkpoint_path, hparams.batch_size, hparams.zprior_sdev)
 
     x_hat_batch_nhwc = dec_x + 0.5
 
@@ -283,8 +283,9 @@ def glow_annealed_map_estimator(hparams):
 
     def estimator(A_val, y_val, hparams):
         """Function that returns the estimated image"""
-        best_keeper = utils.BestKeeper(hparams)
-        best_keeper_z = utils.BestKeeper(hparams)
+        best_keeper = utils.BestKeeper(hparams.batch_size, hparams.n_input)
+        best_keeper_z = utils.BestKeeper(hparams.batch_size, hparams.n_input)
+
         feed_dict = hparams.feed_dict.copy()
 
         if hparams.measurement_type == 'circulant':
@@ -336,7 +337,7 @@ def glow_annealed_langevin_estimator(hparams):
 
     annealed = hparams.annealed
     # set up model and session
-    dec_x, dec_eps, hparams.feed_dict, run = glow_model.get_model(hparams.checkpoint_path, hparams.batch_size, hparams.zprior_sdev, hparams.fixed_init)
+    dec_x, dec_eps, hparams.feed_dict, run = glow_model.get_model(hparams.checkpoint_path, hparams.batch_size, hparams.zprior_sdev)
 
     x_hat_batch_nhwc = dec_x + 0.5
 
@@ -401,8 +402,8 @@ def glow_annealed_langevin_estimator(hparams):
 
     def estimator(A_val, y_val, hparams):
         """Function that returns the estimated image"""
-        best_keeper = utils.BestKeeper(hparams)
-        best_keeper_z = utils.BestKeeper(hparams)
+        best_keeper = utils.BestKeeper(hparams.batch_size, hparams.n_input)
+        best_keeper_z = utils.BestKeeper(hparams.batch_size, hparams.n_input)
         feed_dict = hparams.feed_dict.copy()
 
         if hparams.measurement_type == 'circulant':

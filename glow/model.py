@@ -40,7 +40,7 @@ def run(sess, fetches, feed_dict):
         result = sess.run(fetches, feed_dict)
     return result
 
-def get_model(model_path, batch_size, z_sdev, fixed_init=False):
+def get_model(model_path, batch_size, z_sdev):
     assert os.path.exists(model_path), f'model_path does not exist: {model_path}'
 
     with tf.gfile.GFile(model_path, 'rb') as f:
@@ -92,12 +92,7 @@ def get_model(model_path, batch_size, z_sdev, fixed_init=False):
         var_name = f'dec_eps_{i}_turned_var'
         # Create TensorFlow variable initialized by values of original const.
     #         var = tf.get_variable(name=var_name, dtype='float32', shape=var_shape,initializer=tf.constant_initializer(tensor_as_numpy_array))
-        if not fixed_init:
-            var = tf.get_variable(name=var_name, dtype='float32', shape=var_shape,initializer=tf.random_normal_initializer(stddev=z_sdev))
-        else:
-            init_value = np.load(f'./initializations/dec_eps_{i}_sdev_1.npy')
-            init_value = init_value.repeat(batch_size, 0)
-            var = tf.get_variable(name=var_name, dtype='float32', shape=var_shape,initializer=tf.constant_initializer(z_sdev * init_value))
+        var = tf.get_variable(name=var_name, dtype='float32', shape=var_shape,initializer=tf.random_normal_initializer(stddev=z_sdev))
 
         # We want to keep track of our variables names for later.
         target_var_name_pairs.append((name, var_name))
