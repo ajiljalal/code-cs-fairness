@@ -580,17 +580,55 @@ def partial_circulant_tf(inputs, filters, indices, sign_pattern):
     output = tf.real(output_ifft)
     return tf.gather(output, indices, axis=1)
 
+# later versions of pytorch make FFT a module rather
+# than a function. uncomment the following for different versions
+
+#def partial_circulant_torch(inputs, filters, indices, sign_pattern):
+#    n = np.prod(inputs.shape[1:])
+#    bs = inputs.shape[0]
+#    input_reshape = inputs.view(bs,n)
+#    input_sign = input_reshape * sign_pattern
+#
+#    input_fft, filter_fft = torch.fft.fft(input_sign, dim=1), torch.fft.fft(filters, dim=1)
+#
+#    output_fft = input_fft * filter_fft
+#    output_ifft = torch.fft.ifft(output_fft, dim=1)
+#    output_real = torch.real(output_ifft)
+#    return output_real[:, indices]
+
 def partial_circulant_torch(inputs, filters, indices, sign_pattern):
     n = np.prod(inputs.shape[1:])
+    # vectorize stuff
     bs = inputs.shape[0]
     input_reshape = inputs.view(bs,n)
+
+    # multiply input with random bernoulli
     input_sign = input_reshape * sign_pattern
 
-    input_fft, filter_fft = torch.fft.fft(input_sign, dim=1), torch.fft.fft(filters, dim=1)
+    def to_complex(tensor):
+        zeros = torch.zeros_like(tensor)
+        concat = torch.cat((tensor, zeros), axis=0)
+        reshape = concat.view(2,-1,n)
+        return reshape.permute(1,2,0)
 
-    output_fft = input_fft * filter_fft
-    output_ifft = torch.fft.ifft(output_fft, dim=1)
-    output_real = torch.real(output_ifft)
+    # convert to two-dimensional complex value
+    complex_input = to_complex(input_sign)
+    complex_filter = to_complex(filters)
+
+    # do fft of measurement row and input
+    input_fft = torch.fft(complex_input, 1)
+    filter_fft = torch.fft(complex_filter, 1)
+    output_fft = torch.zeros_like(input_fft)
+
+    # perform complex multiplication between FFTs of input and
+    # row of measurement matrix
+    output_fft[:,:,0] = input_fft[:,:,0]*filter_fft[:,:,0] - input_fft[:,:,1] * filter_fft[:,:,1]
+    output_fft[:,:,1] = input_fft[:,:,1] * filter_fft[:,:,0] + input_fft[:,:,0] * filter_fft[:,:,1]
+
+    # take IFFT to get the convolved output
+    output_ifft = torch.ifft(output_fft, 1)
+    # get real value
+    output_real = output_ifft[:,:,0]
     return output_real[:, indices]
 
 def blur(image, factor):
