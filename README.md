@@ -23,10 +23,10 @@ $ bash download.sh
 $ bash shuffle_catdog.sh
 ```
 
-### Reproducing quantitative results
+## Reproducing quantitative results
 
 
-# Citations
+## Citations
 
 If you find this repo helpful, please cite the following papers:
 
@@ -69,5 +69,5 @@ Our work uses data, code, and models from the following prior work, which must b
 ```
 
 
-# Acknowledgments
+## Acknowledgments
 We use code from ```https://github.com/rosinality/stylegan2-pytorch``` to convert Stylegan2-ADA models from Tensorflow checkpoints to PyTorch checkpoints.
