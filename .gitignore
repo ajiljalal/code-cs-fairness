@@ -1,18 +1,16 @@
 *.ipynb
 *.pyc
-data/
 env/
 estimated/
 test_images/
-models/
+checkpoints/
+datasets/
 *tar*
 *.png
 lpips/weights
 *backup*
 *.pdf
-<<<<<<< HEAD
 *.npy
 *.txt
 *.pt
-*.tar*
 *.sw*
