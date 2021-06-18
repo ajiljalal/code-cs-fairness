@@ -1,4 +1,4 @@
-#Instance-Optimal Compressed Sensing via Posterior Sampling & Fairness for Image Generation with Uncertain Sensitive Attributes
+# Instance-Optimal Compressed Sensing via Posterior Sampling & Fairness for Image Generation with Uncertain Sensitive Attributes
 
 This repo contains code for our papers [Instance-Optimal Compressed Sensing via Posterior Sampling]() & [Fairness for Image Generation with Uncertain Sensitive Attributes]()
 
