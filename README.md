@@ -70,4 +70,8 @@ Our work uses data, code, and models from the following prior work, which must b
 
 
 ## Acknowledgments
-We use code from ```https://github.com/rosinality/stylegan2-pytorch``` to convert Stylegan2-ADA models from Tensorflow checkpoints to PyTorch checkpoints.
+The FFHQ NCSNv2 model was obtained from the official repo: [https://github.com/ermongroup/ncsnv2](https://github.com/ermongroup/ncsnv2)
+
+We trained StyleGAN2 models on cats and dogs via the official repo: [https://github.com/NVlabs/stylegan2-ada](https://github.com/NVlabs/stylegan2-ada) using the AFHQ dataset (Choi et al, 2020). The FFHQ StyleGAN2 model was obtained from the official repo.
+
+We used code from ```https://github.com/rosinality/stylegan2-pytorch``` to convert Stylegan2-ADA models from Tensorflow checkpoints to PyTorch checkpoints.
