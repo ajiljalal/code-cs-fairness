@@ -376,8 +376,7 @@ def glow_annealed_langevin_estimator(hparams):
     # mloss_weight should be m/2sigma^2 for proper langevin
     # zprior_weight should be 0.5 for proper langevin
     sigma = tf.placeholder(tf.float32, shape=[])
-    mloss_weight = 0.5 * hparams.num_measurements / (sigma ** 2)
-    #mloss_weight = 1 / (sigma ** 2)
+    mloss_weight = 1 / (sigma ** 2)
     if hparams.zprior_weight is None:
         zprior_weight = 0.5
     else:
