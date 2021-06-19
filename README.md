@@ -76,5 +76,5 @@ We trained StyleGAN2 models on cats and dogs via the official repo: [https://git
 
 We used code from ```https://github.com/rosinality/stylegan2-pytorch``` to convert Stylegan2-ADA models from Tensorflow checkpoints to PyTorch checkpoints.
 
-The GLOW model and code is from the official repo: [https://github.com/openai/glow](https://github.com/openai/glow). Unfortunately the provided .pb file uses placeholders for the _z_ variables, which makes them non-differentiable and the model cannot be directly used in our experiments. In order to address this issue, we used the solution found here: [https://stackoverflow.com/a/57528005](https://stackoverflow.com/a/57528005).
+The GLOW model and code is from the official repo: [https://github.com/openai/glow](https://github.com/openai/glow). Unfortunately the provided .pb file uses placeholders for the _z_ tensors, which makes them non-differentiable and the model cannot be directly used in our experiments. In order to address this issue, we used the solution found here: [https://stackoverflow.com/a/57528005](https://stackoverflow.com/a/57528005).
 
