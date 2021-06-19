@@ -10,6 +10,7 @@ NOTE: Please run **all** commands from the root directory of the repository, i.e
 
 ```shell
 $ git clone git@github.com:ajiljalal/code-cs-fairness.git
+$ cd code-cs-fairness
 $ python3.6 -m venv env
 $ source env/bin/activate
 $ pip install -U pip
