@@ -30,12 +30,10 @@ def get_data(expt_dir):
     data = {}
     measurement_losses = utils.load_if_pickled(expt_dir + '/measurement_losses.pkl')
     l2_losses = utils.load_if_pickled(expt_dir + '/l2_losses.pkl')
-    lpips_scores = utils.load_if_pickled(expt_dir + '/lpips_scores.pkl')
     likelihoods = utils.load_if_pickled(expt_dir + '/likelihoods.pkl')
     z_norms = utils.load_if_pickled(expt_dir + '/z_norms.pkl')
     data = {'measurement': measurement_losses.values(),
             'l2': l2_losses.values(),
-            'lpips': lpips_scores.values(),
             'likelihood': likelihoods.values(),
             'norm': z_norms.values()}
     return data
@@ -57,12 +55,6 @@ def get_metrics(expt_dir):
     l2_loss_std = np.std(np.array(l2_list)) / np.sqrt(len(data['l2']))
     metrics['l2'] = {'mean':l2_loss_mean, 'std':l2_loss_std}
 
-
-
-    lpips_list = list([i for i in data['lpips']])
-    v_loss_mean = np.mean(lpips_list)
-    v_loss_std = np.std(lpips_list) / np.sqrt(len(data['lpips']))
-    metrics['lpips'] = {'mean': v_loss_mean, 'std': v_loss_std}
 
     likelihood_list = list(data['likelihood'])
     likelihood_loss_mean = np.mean(likelihood_list)
@@ -98,8 +90,6 @@ def find_best(pattern, criterion, retrieve_list):
     answer = [None]*len(retrieve_list)
     for dir, val in metrics.items():
         merit = get_nested_value(val, criterion)
-        if merit < 0:
-            merit = -1 * merit
         if merit < best_merit:
             best_merit = merit
             best_dir = dir
@@ -114,9 +104,7 @@ def find_best(pattern, criterion, retrieve_list):
     return answer, best_dir
 
 
-def plot(base, regex, criterion, retrieve_list, label, color=None):
-    # todo
-    marker_list = {'b':'s', 'r':'o', 'y':'^'}
+def plot(base, regex, criterion, retrieve_list, label):
     keys = map(int_or_float, [a.split('/')[-1] for a in glob.glob(base + '*')])
     means, std_devs = {}, {}
     for i, key in enumerate(keys):
@@ -128,28 +116,15 @@ def plot(base, regex, criterion, retrieve_list, label, color=None):
     if retrieve_list[0][0] != 'measurement':
         means = np.asarray([  means[key] for key in plot_keys])
         std_devs = np.asarray([  std_devs[key] for key in plot_keys])
-        if color is None:
-            (lines, caps, _) = plt.errorbar(plot_keys, means, yerr=1.96*std_devs,
+        (lines, caps, _) = plt.errorbar(plot_keys, means, yerr=1.96*std_devs,
                                     marker='o', markersize=5, capsize=5, label=label)
-        else:
-            (lines, caps, _) = plt.errorbar(plot_keys, means, yerr=1.96*std_devs,
-                                    marker=marker_list[color], markersize=5, capsize=5, color=color, label=label)
 
     elif retrieve_list[0][0] == 'measurement':
         means = np.asarray([means[key] for key in plot_keys])
         std_devs = np.asarray([std_devs[key] for key in plot_keys])
-        if color is None:
-            (lines, caps, _) = plt.errorbar(plot_keys, means, yerr=1.96*std_devs,
-                                    fmt=':^', markersize=5, capsize=5, label=label)
-        else:
-            (lines) = plt.plot(plot_keys, means,
-                                    ':^', markersize=5, color=color, label=label)
-            # (lines, caps, _) = plt.errorbar(plot_keys, means, yerr=1.96*std_devs,
-            #                         fmt=':^', markersize=5, capsize=5, color=color)
+        (lines, caps, _) = plt.errorbar(plot_keys, means, yerr=1.96*std_devs,
+                                fmt=':^', markersize=5, capsize=5, label=label)
 
-    try:
-        for cap in caps:
-            cap.set_markeredgewidth(1)
-        return lines.get_color()
-    except:
-        pass
+    for cap in caps:
+        cap.set_markeredgewidth(1)
+    return lines.get_color()

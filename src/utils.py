@@ -696,17 +696,15 @@ def model_input(hparams):
     return images
 
 
-def view_image(image, hparams, mask=None):
+def view_image(image, hparams):
     """Process and show the image"""
     if len(image) == hparams.n_input:
         image = image.reshape(hparams.image_shape)
-        image = transpose(image)
-        if mask is not None:
-            mask = mask.reshape(hparams.image_shape)
-            image = np.maximum(np.minimum(1.0, image - 1.0*image*(1-mask)), -1.0)
+    if image.shape == hparams.image_shape:
+        image = np.array(image).transpose(1,2,0)
     min_image = image.min()
     max_image = image.max()
-    utils.plot_image((image - min_image)/(max_image - min_image))
+    plot_image((image - min_image)/(max_image - min_image))
 
 
 def save_image(image, path):
