@@ -75,10 +75,10 @@ def main():
                 exists = False
                 break
             pattern = base + str(num_measurements) + regex
-            if 'glow' in regex and legend in [ 'MAP', 'Langevin']:
-                criterion = ['likelihood', 'mean']
-            else:
+            if legend in ['Modified-MAP']:
                 criterion = ['l2', 'mean']
+            else:
+                criterion = ['likelihood', 'mean']
 
             _, best_dir = find_best(pattern, criterion, retrieve_list)
             pattern_images = best_dir + '/images/{:06d}.png'
