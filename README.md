@@ -2,7 +2,7 @@
 
 This repo contains code for our papers [Instance-Optimal Compressed Sensing via Posterior Sampling](https://arxiv.org/abs/2106.11438) & [Fairness for Image Generation with Uncertain Sensitive Attributes]()
 
-NOTE: Please run **all** commands from the root directory of the repository, i.e from ``code-cs-fairness/```
+NOTE: Please run **all** commands from the root directory of the repository, i.e from ```code-cs-fairness/```
 
 ## Preliminaries 
 
