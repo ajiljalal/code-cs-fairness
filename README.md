@@ -1,6 +1,6 @@
 # Instance-Optimal Compressed Sensing via Posterior Sampling & Fairness for Image Generation with Uncertain Sensitive Attributes
 
-This repo contains code for our papers [Instance-Optimal Compressed Sensing via Posterior Sampling]() & [Fairness for Image Generation with Uncertain Sensitive Attributes]()
+This repo contains code for our papers [Instance-Optimal Compressed Sensing via Posterior Sampling](https://arxiv.org/abs/2106.11438) & [Fairness for Image Generation with Uncertain Sensitive Attributes]()
 
 NOTE: Please run **all** commands from the root directory of the repository, i.e from ``code-cs-fairness/```
 
@@ -25,13 +25,31 @@ $ bash shuffle_catdog.sh
 ```
 
 ## Reproducing quantitative results
+The scripts for compressed sensing results are in ```scripts/compressed-sensing```, and the scripts for fairness are in ```scripts/fairness```.
+Please adjust the command line arguments according to your requirements. ```--num-input-images``` and ```--batch-size``` need to be adjusted according to your compute capabilities and requirements.
 
+## Visualizing results
+The files ```src/view_estimated_celebA_cs.py```, ```src/view_estimated_ffhq_cs.py``` will plot qualitative reconstructions for compressed sensing. The Jupyter notebook ```src/cs_metrics.ipynb``` will plot quantitative metrics.
+
+A similar notebook for fairness will be added shortly.
+
+You can manually access the results under appropriately named folders in ```estimated/```.
 
 ## Citations
 
 If you find this repo helpful, please cite the following papers:
+```
+@misc{jalal2021instanceoptimal,
+      title={Instance-Optimal Compressed Sensing via Posterior Sampling}, 
+      author={Ajil Jalal and Sushrut Karmalkar and Alexandros G. Dimakis and Eric Price},
+      year={2021},
+      eprint={2106.11438},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
+```
 
-Our work uses data, code, and models from the following prior work, which must be cited:
+Our work uses data, code, and models from the following prior work, which must be cited according to what you use:
 ```
 @inproceedings{song2020improved,
   author    = {Yang Song and Stefano Ermon},
@@ -67,6 +85,14 @@ Our work uses data, code, and models from the following prior work, which must b
   booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
   year={2020}
 }
+
+@article{heckel_deep_2018,
+    author    = {Reinhard Heckel and Paul Hand},
+    title     = {Deep Decoder: Concise Image Representations from Untrained Non-convolutional Networks},
+    journal   = {International Conference on Learning Representations},
+    year      = {2019}
+}
+
 ```
 
 
