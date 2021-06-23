@@ -18,7 +18,7 @@ class Hparams(object):
         self.image_matrix = 0
         self.image_shape = (3,256,256)
         self.image_size = 256
-        self.noise_std = 0.0
+        self.noise_std = 4.0
         self.n_input = np.prod(self.image_shape)
         self.measurement_type = 'circulant'
         self.model_types = ['MAP', 'Langevin']
@@ -85,7 +85,7 @@ def main():
             patterns_l2.append(pattern_l2)
         if exists:
             view(xs_dict, patterns_images, patterns_l2, images_nums, hparams)
-            save_path = f'./results/ffhq-reconstr-{num_measurements}-{criterion[0]}.pdf'
+            save_path = f'./results/ffhq-69000-reconstr-{num_measurements}-{criterion[0]}.pdf'
             utils.save_plot(is_save, save_path)
         else:
             print(f'Could not find reconstructions for {num_measurements}')
