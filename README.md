@@ -47,6 +47,15 @@ If you find this repo helpful, please cite the following papers:
       archivePrefix={arXiv},
       primaryClass={cs.LG}
 }
+
+@misc{jalal2021fairness,
+      title={Fairness for Image Generation with Uncertain Sensitive Attributes},
+      author={Ajil Jalal and Sushrut Karmalkar and Jessica Hoffmann and Alexandros G. Dimakis and Eric Price},
+      year={2021},
+      eprint={2106.12182},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}
 ```
 
 Our work uses data, code, and models from the following prior work, which must be cited according to what you use:
