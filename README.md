@@ -39,22 +39,18 @@ You can manually access the results under appropriately named folders in ```esti
 
 If you find this repo helpful, please cite the following papers:
 ```
-@misc{jalal2021instanceoptimal,
-      title={Instance-Optimal Compressed Sensing via Posterior Sampling}, 
-      author={Ajil Jalal and Sushrut Karmalkar and Alexandros G. Dimakis and Eric Price},
-      year={2021},
-      eprint={2106.11438},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+@article{jalal2021instance,
+  title={Instance-Optimal Compressed Sensing via Posterior Sampling},
+  author={Jalal, Ajil and Karmalkar, Sushrut and Dimakis, Alexandros G and Price, Eric},
+  journal={arXiv preprint arXiv:2106.11438},
+  year={2021}
 }
 
-@misc{jalal2021fairness,
-      title={Fairness for Image Generation with Uncertain Sensitive Attributes},
-      author={Ajil Jalal and Sushrut Karmalkar and Jessica Hoffmann and Alexandros G. Dimakis and Eric Price},
-      year={2021},
-      eprint={2106.12182},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
+@article{jalal2021fairness,
+  title={Fairness for Image Generation with Uncertain Sensitive Attributes},
+  author={Jalal, Ajil and Karmalkar, Sushrut and Hoffmann, Jessica and Dimakis, Alexandros G and Price, Eric},
+  journal={arXiv preprint arXiv:2106.12182},
+  year={2021}
 }
 ```
 
