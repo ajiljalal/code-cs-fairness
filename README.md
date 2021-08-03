@@ -46,11 +46,13 @@ If you find this repo helpful, please cite the following papers:
   year={2021}
 }
 
-@article{jalal2021fairness,
+@inproceedings{jalal2021fairness,
   title={Fairness for Image Generation with Uncertain Sensitive Attributes},
-  author={Jalal, Ajil and Karmalkar, Sushrut and Hoffmann, Jessica and Dimakis, Alexandros G and Price, Eric},
-  journal={arXiv preprint arXiv:2106.12182},
-  year={2021}
+  author={Jalal, Ajil and Karmalkar, Sushrut and Hoffmann, Jessica and Dimakis, Alex and Price, Eric},
+  booktitle={International Conference on Machine Learning},
+  pages={4721--4732},
+  year={2021},
+  organization={PMLR}
 }
 ```
 
