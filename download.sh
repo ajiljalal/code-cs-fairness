@@ -6,11 +6,11 @@ wget -N https://www.dropbox.com/s/t9l9o3vsx2jai3z/afhq.zip?dl=0 -O datasets/afhq
 # glow checkpoint
 curl https://openaipublic.azureedge.net/glow-demo/large3/graph_unoptimized.pb > checkpoints/glow/graph_unoptimized.pb
 # test images
-gdown https://drive.google.com/uc?id=1dQGyLXYv7OPOFgHJ8Va0vYnqrIqJeXz3
+gdown https://drive.google.com/uc?id=1FrijKOZ0Fu3V_SpI2GnILqOY2DfNbRPX
 # ncsnv2 checkpoint
-gdown https://drive.google.com/uc?id=1jDcIxI0nqv6AOBhHpgbH7OIW63QU77lh
+gdown https://drive.google.com/uc?id=151V3yt-JYDd298rZ2i8ORSSVHY1HRcUT
 # stylegan checkpointss
-gdown https://drive.google.com/uc?id=1I4KtMsW61nRI6TOaadpA5m_6Ygd4QrgR
+gdown https://drive.google.com/uc?id=14urG8mZN9ap8ZyHTA-DBJ9NNJvRRfGE1
 
 # extract stuff
 unzip datasets/afhq.zip -d ./datasets
